@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,8 +20,7 @@ public class Plane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        point = new Vector3(1, 1, 1);
-        normal = (new Vector3(0, 3, 1)).normalized;
+     
     }
 
     // Update is called once per frame
@@ -34,5 +34,10 @@ public class Plane : MonoBehaviour
         Vector3 vtop = point - v;
 
         return Gp.parallel(vtop, normal).magnitude;
+    }
+
+    internal bool CollidesWith(Ball firstSphere)
+    {
+        return distanceTo(firstSphere.transform.position) < firstSphere.radius;
     }
 }
