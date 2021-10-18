@@ -170,10 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0499e9b036d5549409230f01bc1a3adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
-  turnSpeed: 100
-  MovementSpeed: 20
-  Gravity: 9.8
 --- !u!136 &291414866
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -461,11 +457,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4720941400279188, guid: 9437be881ad682348bd31aa228922027, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: -1.79
       objectReference: {fileID: 0}
     - target: {fileID: 4720941400279188, guid: 9437be881ad682348bd31aa228922027, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45.6
+      value: 51.23
       objectReference: {fileID: 0}
     - target: {fileID: 4720941400279188, guid: 9437be881ad682348bd31aa228922027, type: 3}
       propertyPath: m_LocalRotation.w
@@ -511,9 +507,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1231881110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75baa67285af6b4cbc2b8f47e7fbd24, type: 3}
+  m_Script: {fileID: 11500000, guid: 834e86a0d4466b4478dd14131c0259a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationDirection: {x: 0, y: 0, z: 0}
+  durationTime: 0
 --- !u!1 &1649883502
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allSpheres: []
   allPlanes: []
+  allTargets: []
 --- !u!4 &1649883504
 Transform:
   m_ObjectHideFlags: 0

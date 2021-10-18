@@ -7,11 +7,14 @@ public class Manager : MonoBehaviour
 {
     public List<Ball> allSpheres;
     public List<Plane> allPlanes;
+    public List<Target> allTargets;
+    int score;
 
     // Start is called before the first frame update
     void Start()
     {
-        allPlanes = FindObjectsOfType<Plane>().ToList();   
+        allPlanes = FindObjectsOfType<Plane>().ToList();
+        allTargets = FindObjectsOfType<Target>().ToList();
     }
 
     // Update is called once per frame
@@ -40,7 +43,25 @@ public class Manager : MonoBehaviour
                 {
                     ResolveCollision(firstSphere, p);
 
+                    //score++;
+
+                    //Debug.Log("Score: " + score);
+
                     //Debug.Log("Plane Collision");
+                }
+            }
+
+            foreach (Target t in allTargets)
+            {
+                if (firstSphere.CollidesWith(t))
+                {
+                    ResolveCollision(firstSphere, t);
+
+                    t.hitTarget();
+
+                    score++;
+
+                    Debug.Log("Score: " + score);
                 }
             }
         }
