@@ -22,6 +22,7 @@ public class MyController : MonoBehaviour
         bool stop = Input.GetKey(KeyCode.Q);
         bool turnLeft = Input.GetKey(KeyCode.A);
         bool turnRight = Input.GetKey(KeyCode.D);
+        bool drawPistol = Input.GetKeyDown(KeyCode.R);
 
         if (forwardPress && velocity < 1)
         {
@@ -33,14 +34,19 @@ public class MyController : MonoBehaviour
             newAnimation.SetBool("Walk", false);
         }
 
-        if(turnLeft)
+        if(turnLeft && forwardPress && velocity > 0)
         {
-            turn -= acceleration * Time.deltaTime;
+            turn -= 1 * Time.deltaTime;
         }
 
-        if(turnRight)
+        if(turnRight && forwardPress && velocity > 0)
         {
-            turn += acceleration * Time.deltaTime;
+            turn += 1 * Time.deltaTime;
+        }
+
+        if(!turnLeft && !turnRight)
+        {
+            turn = 0;
         }
 
         if (runPress && forwardPress)
@@ -62,6 +68,21 @@ public class MyController : MonoBehaviour
         {
             velocity = 0.2f;
         }
+
+        if(drawPistol)
+        {
+            newAnimation.SetBool("Pistol_Drawn", true);
+
+            GameObject gun = Resources.Load("Pistol") as GameObject;
+
+            Instantiate(gun);
+
+            //gun.transform.parent =
+
+        //if(drawPistol && newAnimation.GetBool("Pistol_Drawn") == true)
+        //{
+        //    newAnimation.SetBool("Pistol_Drawn", false);
+        //}
 
         newAnimation.SetFloat("Turn", turn);
         newAnimation.SetFloat("Velocity", velocity);
