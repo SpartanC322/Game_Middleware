@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    internal Vector3 velocity, acceleration;
+    internal Vector3 velocity, acceleration, gravity, direction;
 
-    internal float radius, CoR, mass;
+    internal float radius, CoR, mass, gravityModifier, speed;
 
     Plane pl;
 
@@ -15,6 +15,11 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = 0;
+
+        gravity = new Vector3(0,-1f,0);
+
+        gravityModifier = 1;
 
         mass = 1;
 
@@ -28,12 +33,33 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(Vector3.Distance(transform.position, bl.transform.position));
-        acceleration = 9.8f * new Vector3(0, -1, 10);
+        //Debug.Log(Vector3.Distance(transform.position, bl.transform.position));
+
+        acceleration += 9.8f * ((gravity / gravityModifier));
 
         velocity += acceleration * Time.deltaTime;
 
         transform.position += velocity * Time.deltaTime;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir;
+    }
+
+    public void IncreaseAcceleration(Vector3 accelerate)
+    {
+        acceleration += accelerate;
+    }
+
+    public void changeGravity(float grav)
+    {
+        gravityModifier = grav;
     }
     
     internal bool CollidesWith(Ball bl)

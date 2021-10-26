@@ -43,10 +43,6 @@ public class Manager : MonoBehaviour
                 {
                     ResolveCollision(firstSphere, p);
 
-                    //score++;
-
-                    //Debug.Log("Score: " + score);
-
                     //Debug.Log("Plane Collision");
                 }
             }
@@ -59,7 +55,7 @@ public class Manager : MonoBehaviour
 
                     t.hitTarget();
 
-                    score++;
+                    score += t.points;
 
                     Debug.Log("Score: " + score);
                 }

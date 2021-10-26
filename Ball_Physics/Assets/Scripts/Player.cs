@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //GameObject ball;
+    GameObject ball;
 
-    public CharacterController characterController;
+    CharacterController characterController;
 
     private float speed = 12f;
-
-
+    private float bulletSpeed = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
-        //characterController = GetComponent<CharacterController>();
-        //ball = Resources.Load("ball") as GameObject;
+        characterController = GetComponent<CharacterController>();
+        ball = Resources.Load("ball") as GameObject;
     }
 
     // Update is called once per frame
@@ -29,11 +28,24 @@ public class Player : MonoBehaviour
 
         characterController.Move(move * speed * Time.deltaTime);
 
-        //if (Input.GetKeyUp(KeyCode.Mouse0))
-        //{
-        //    Instantiate(ball, transform.position + new Vector3(0,0,2) , transform.rotation);
-        //    Ball ba = ball.GetComponent<Ball>();
-        //    //ba.IAmHere();
-        //}
+
+
+        //transform.position += new Vector3(0,-1,0) * Time.deltaTime;
+
+
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            ball = Instantiate(ball, transform.position + (transform.forward * 2) + new Vector3(0,2,0), transform.rotation);
+
+            var ba = ball.GetComponent<Ball>();
+            ba.SetDirection(transform.forward.normalized);
+            ba.SetSpeed(bulletSpeed);
+            ba.changeGravity(100);
+
+            ba.IncreaseAcceleration(transform.forward.normalized * bulletSpeed);
+            
+            //ba.IAmHere();
+        }
     }
 }
