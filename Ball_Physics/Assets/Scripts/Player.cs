@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    internal GameObject ball;
-    internal CharacterController characterController;
-    internal Camera cam;
-    internal float speed = 12f;
-    internal float bulletSpeed = 500f;
+    private GameObject ball;
+    private CharacterController characterController;
+    private Camera cam;
+    private float speed = 12f;
+    private float bulletSpeed = 300f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +37,11 @@ public class Player : MonoBehaviour
             ball = Instantiate(ball, cam.transform.position + (cam.transform.forward * 2), cam.transform.rotation);
 
             var ba = ball.GetComponent<Ball>();
-            ba.SetSpeed(bulletSpeed);
-            ba.changeGravity(100);
 
+            ba.changeGravity(100);
             ba.setAcceleration(transform.forward.normalized * bulletSpeed);
+
+            Destroy(ball, 3);
         }
     }
 }

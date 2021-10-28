@@ -26,11 +26,6 @@ public class Manager : MonoBehaviour
         {
             Ball firstSphere = allSpheres[i];
 
-            if(firstSphere.timeToDie <= 0)
-            {
-                Destroy(firstSphere);
-            }
-
             for (int j = i + 1; j < allSpheres.Count;j++)
             {
                 Ball secondSphere = allSpheres[j];
