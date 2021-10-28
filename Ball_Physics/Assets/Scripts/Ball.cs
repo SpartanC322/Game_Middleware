@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    internal Vector3 velocity, acceleration, gravity, direction;
+    internal Vector3 velocity, acceleration, gravity;
 
-    internal float radius, CoR, mass, gravityModifier, speed;
+    internal float radius, CoR, mass, gravityModifier, speed, timeToDie;
 
-    Plane pl;
-
-    public Ball bl;
+    Ball bl;
     
     // Start is called before the first frame update
     void Start()
     {
+        timeToDie = 1;
+
         speed = 0;
 
         gravity = new Vector3(0,-1f,0);
@@ -26,8 +26,6 @@ public class Ball : MonoBehaviour
         radius = 0.5f;
 
         CoR = 0.6f;//Coeficient of Restitution
-
-        pl = FindObjectOfType<Plane>();
     }
 
     // Update is called once per frame
@@ -40,6 +38,16 @@ public class Ball : MonoBehaviour
         velocity += acceleration * Time.deltaTime;
 
         transform.position += velocity * Time.deltaTime;
+
+        if (timeToDie > 0)
+        {
+            timeToDie -= Time.deltaTime;
+        }
+    }
+
+    public float getTime()
+    {
+        return timeToDie;
     }
 
     public void SetSpeed(float newSpeed)
@@ -47,12 +55,7 @@ public class Ball : MonoBehaviour
         speed = newSpeed;
     }
 
-    public void SetDirection(Vector3 dir)
-    {
-        direction = dir;
-    }
-
-    public void IncreaseAcceleration(Vector3 accelerate)
+    public void setAcceleration(Vector3 accelerate)
     {
         acceleration += accelerate;
     }
@@ -72,8 +75,8 @@ public class Ball : MonoBehaviour
         return p.distanceTo(transform.position) < radius;
     }
 
-    //public void IAmHere()
-    //{
-    //    Debug.Log("Hi");
-    //}
+    internal bool CollidesWith(Target t)
+    {
+        return t.distanceTo(transform.position) < radius;
+    }
 }

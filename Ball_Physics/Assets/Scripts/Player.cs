@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    GameObject ball;
-
-    CharacterController characterController;
-
-    private float speed = 12f;
-    private float bulletSpeed = 100f;
+    internal GameObject ball;
+    internal CharacterController characterController;
+    internal Camera cam;
+    internal float speed = 12f;
+    internal float bulletSpeed = 500f;
 
     // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        cam = FindObjectOfType<Camera>();
         ball = Resources.Load("ball") as GameObject;
     }
 
@@ -28,24 +28,19 @@ public class Player : MonoBehaviour
 
         characterController.Move(move * speed * Time.deltaTime);
 
-
-
         //transform.position += new Vector3(0,-1,0) * Time.deltaTime;
 
 
 
         if (Input.GetButtonDown("Fire1"))
         {
-            ball = Instantiate(ball, transform.position + (transform.forward * 2) + new Vector3(0,2,0), transform.rotation);
+            ball = Instantiate(ball, cam.transform.position + (cam.transform.forward * 2), cam.transform.rotation);
 
             var ba = ball.GetComponent<Ball>();
-            ba.SetDirection(transform.forward.normalized);
             ba.SetSpeed(bulletSpeed);
             ba.changeGravity(100);
 
-            ba.IncreaseAcceleration(transform.forward.normalized * bulletSpeed);
-            
-            //ba.IAmHere();
+            ba.setAcceleration(transform.forward.normalized * bulletSpeed);
         }
     }
 }

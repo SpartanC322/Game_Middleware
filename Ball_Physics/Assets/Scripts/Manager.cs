@@ -25,6 +25,12 @@ public class Manager : MonoBehaviour
         for (int i = 0; i < allSpheres.Count;i++)
         {
             Ball firstSphere = allSpheres[i];
+
+            if(firstSphere.timeToDie <= 0)
+            {
+                Destroy(firstSphere);
+            }
+
             for (int j = i + 1; j < allSpheres.Count;j++)
             {
                 Ball secondSphere = allSpheres[j];
@@ -43,6 +49,8 @@ public class Manager : MonoBehaviour
                 {
                     ResolveCollision(firstSphere, p);
 
+                    //firstSphere.changeGravity(1);
+
                     //Debug.Log("Plane Collision");
                 }
             }
@@ -53,9 +61,12 @@ public class Manager : MonoBehaviour
                 {
                     ResolveCollision(firstSphere, t);
 
-                    t.hitTarget();
+                    if (t.getPoints() > 0)
+                    {
+                        score += t.getPoints();
+                    }
 
-                    score += t.points;
+                    t.emptyPoints();
 
                     Debug.Log("Score: " + score);
                 }
@@ -63,7 +74,8 @@ public class Manager : MonoBehaviour
         }
     }
 
-    private void ResolveCollision(Ball firstSphere, Plane p)
+    //Resolve Collision between Target and Ball
+    private void ResolveCollision(Ball firstSphere, Target t)
     {
         //Version 1
         //transform.position -=  velocity * Time.deltaTime;
@@ -74,24 +86,56 @@ public class Manager : MonoBehaviour
 
         Vector3 v_s, v_c;
 
+        v_s = Gp.perpendicular(firstSphere.velocity, t.normal);
+
+        v_c = Gp.parallel(firstSphere.velocity, t.normal);
+
+        float time_r = (firstSphere.radius - t.distanceTo(firstSphere.transform.position)) / v_c.magnitude;
+
+        firstSphere.transform.position -= firstSphere.velocity * time_r;
+
+        firstSphere.velocity = v_s - (v_c * firstSphere.CoR);
+
+
+        firstSphere.transform.position += firstSphere.velocity * time_r;
+
+        t.hitTarget();
+    }
+
+    //Resolve Collision between Plane and Ball
+    private void ResolveCollision(Ball firstSphere, Plane p)
+    {
+        //Version 1
+        //transform.position -=  velocity * Time.deltaTime;
+
+        //float overlap = radius - pl.distanceTo(transform.position);
+        //transform.position += overlap * pl.normal;
+
+        Vector3 v_s, v_c;
+
         v_s = Gp.perpendicular(firstSphere.velocity, p.normal);
 
         v_c = Gp.parallel(firstSphere.velocity, p.normal);
 
-        float time_r = (firstSphere.radius - p.distanceTo(transform.position)) / v_c.magnitude;
+        float time_r = (firstSphere.radius - p.distanceTo(firstSphere.transform.position)) / v_c.magnitude;
 
-        transform.position += firstSphere.velocity * time_r;
+        firstSphere.transform.position -= firstSphere.velocity * time_r;
 
 
 
         firstSphere.velocity = v_s - (v_c * firstSphere.CoR);
 
 
-        transform.position -= firstSphere.velocity * time_r;
+        firstSphere.transform.position += firstSphere.velocity * time_r;
+
+        //firstSphere.setAcceleration(firstSphere.acceleration / 2);
 
         //velocity = -velocity * CoR;//Coeficient of Restitution
+
+        firstSphere.changeGravity(0.1f);
     }
 
+    //Resolves Collision between two Balls
     private static void ResolveCollision(Ball firstSphere, Ball secondSphere)
     {
         //Debug.Log("collided");
