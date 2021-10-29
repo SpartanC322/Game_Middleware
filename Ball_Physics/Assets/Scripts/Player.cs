@@ -34,14 +34,13 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            ball = Instantiate(ball, cam.transform.position + (cam.transform.forward * 2), cam.transform.rotation);
+            var bl = Instantiate(ball, cam.transform.position + (cam.transform.forward * 2), cam.transform.rotation);
 
-            var ba = ball.GetComponent<Ball>();
+            var ba = bl.GetComponent<Ball>();
 
-            ba.changeGravity(100);
             ba.setAcceleration(transform.forward.normalized * bulletSpeed);
 
-            Destroy(ball, 3);
+            Destroy(bl.gameObject, 2);
         }
     }
 }

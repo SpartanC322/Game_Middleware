@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour
     {
         gravity = new Vector3(0,-1f,0);
 
-        gravityModifier = 1;
+        gravityModifier = 5;
 
         mass = 1;
 
@@ -34,6 +34,11 @@ public class Ball : MonoBehaviour
     public void setAcceleration(Vector3 accelerate)
     {
         acceleration += accelerate;
+    }
+
+    public Vector3 getAcceleration()
+    {
+        return acceleration;
     }
 
     public void changeGravity(float grav)

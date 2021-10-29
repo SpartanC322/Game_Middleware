@@ -16,7 +16,7 @@ public class Target : Plane
 
     void Start()
     {
-        rotationDirection = new Vector3(1, 0, 0);
+        rotationDirection -= transform.forward;
         durationTime = 1000;
     }
 
@@ -34,7 +34,9 @@ public class Target : Plane
 
         //transform.rotation *= Quaternion.AngleAxis(-angle, Vector3.left);
 
-        this.transform.rotation = new Quaternion(180, 0, 0, 0);
+        //transform.rotation = new Quaternion(-180,0,0,0);
+
+        transform.localEulerAngles = rotationDirection * 180;
 
         //transform.Rotate(Time.deltaTime * 300, 0, 0);
     }
