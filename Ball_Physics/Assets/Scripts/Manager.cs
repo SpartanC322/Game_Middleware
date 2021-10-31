@@ -1,20 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
     public List<Ball> allSpheres;
     public List<Plane> allPlanes;
     public List<Target> allTargets;
-    int score;
+    public Text scoreText;
+    private int score;
 
     // Start is called before the first frame update
     void Start()
     {
         allPlanes = FindObjectsOfType<Plane>().ToList();
         allTargets = FindObjectsOfType<Target>().ToList();
+        scoreText = FindObjectOfType<Text>();
     }
 
     // Update is called once per frame
@@ -61,6 +65,7 @@ public class Manager : MonoBehaviour
                 }
             }
         }
+        scoreText.text = "Score: " + score;
     }
 
     //Resolve Collision between Target and Ball

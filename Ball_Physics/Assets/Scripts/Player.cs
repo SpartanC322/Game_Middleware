@@ -30,8 +30,6 @@ public class Player : MonoBehaviour
 
         //transform.position += new Vector3(0,-1,0) * Time.deltaTime;
 
-
-
         if (Input.GetButtonDown("Fire1"))
         {
             var bl = Instantiate(ball, cam.transform.position + (cam.transform.forward * 2), cam.transform.rotation);

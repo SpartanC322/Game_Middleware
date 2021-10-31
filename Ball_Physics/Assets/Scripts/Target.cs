@@ -7,7 +7,7 @@ public class Target : Plane
     private int points = 1;
     private Vector3 rotationDirection;
     private float durationTime;
-    //private float angle;
+    private float angle;
 
     public int getPoints()
     {
@@ -16,7 +16,6 @@ public class Target : Plane
 
     void Start()
     {
-        rotationDirection -= transform.forward;
         durationTime = 1000;
     }
 
@@ -29,14 +28,13 @@ public class Target : Plane
     //When target is hit
     public void hitTarget()
     {
-        //angle = Time.deltaTime * durationTime;
-        //transform.Rotate(rotationDirection * smooth);
+        angle = durationTime;
+        angle = Mathf.Clamp(angle,90,90) * Time.deltaTime;
+        transform.Rotate(new Vector3(1,0,0) * angle);
 
         //transform.rotation *= Quaternion.AngleAxis(-angle, Vector3.left);
 
         //transform.rotation = new Quaternion(-180,0,0,0);
-
-        transform.localEulerAngles = rotationDirection * 180;
 
         //transform.Rotate(Time.deltaTime * 300, 0, 0);
     }
