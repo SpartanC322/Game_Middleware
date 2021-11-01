@@ -8,6 +8,8 @@ public class MyController : MonoBehaviour
     float velocity = 0;
     public float acceleration = 0.1f, deceleration = 0.1f, turn = 0;
 
+    public GameObject hand;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,23 +30,23 @@ public class MyController : MonoBehaviour
         {
             newAnimation.SetBool("Walk", true);
         }
-        
+
         if (!forwardPress)
         {
             newAnimation.SetBool("Walk", false);
         }
 
-        if(turnLeft && forwardPress && velocity > 0)
+        if (turnLeft && forwardPress && velocity > 0)
         {
             turn -= 1 * Time.deltaTime;
         }
 
-        if(turnRight && forwardPress && velocity > 0)
+        if (turnRight && forwardPress && velocity > 0)
         {
             turn += 1 * Time.deltaTime;
         }
 
-        if(!turnLeft && !turnRight)
+        if (!turnLeft && !turnRight)
         {
             turn = 0;
         }
@@ -54,35 +56,40 @@ public class MyController : MonoBehaviour
             velocity += acceleration * Time.deltaTime;
         }
 
-        if(!runPress)
+        if (!runPress)
         {
             velocity -= deceleration * Time.deltaTime;
         }
 
-        if(velocity < 0)
+        if (velocity < 0)
         {
             velocity = 0;
         }
-        
-        if(velocity > 0.2f && !stop)
+
+        if (velocity > 0.2f && !stop)
         {
             velocity = 0.2f;
         }
 
-        if(drawPistol)
+        if (drawPistol)
         {
             newAnimation.SetBool("Pistol_Drawn", true);
 
-            GameObject gun = Resources.Load("Pistol") as GameObject;
+            GameObject gun = Instantiate(Resources.Load("Pistol")) as GameObject;
 
-            Instantiate(gun);
+            gun.transform.localScale = new Vector3(10,10,10);
 
-            //gun.transform.parent =
+            //GameObject hand = GameObject.Find("Base HumanRArmPalm");
 
-        //if(drawPistol && newAnimation.GetBool("Pistol_Drawn") == true)
-        //{
-        //    newAnimation.SetBool("Pistol_Drawn", false);
-        //}
+            //Instantiate(gun,hand.transform.position,hand.transform.rotation);
+
+            gun.transform.SetParent(hand.transform, false);
+
+            //if(drawPistol && newAnimation.GetBool("Pistol_Drawn") == true)
+            //{
+            //    newAnimation.SetBool("Pistol_Drawn", false);
+            //}
+        }
 
         newAnimation.SetFloat("Turn", turn);
         newAnimation.SetFloat("Velocity", velocity);
