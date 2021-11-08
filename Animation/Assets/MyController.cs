@@ -8,7 +8,7 @@ public class MyController : MonoBehaviour
     float velocity = 0;
     public float acceleration = 0.1f, deceleration = 0.1f, turn = 0;
 
-    public GameObject hand;
+    GameObject hand;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class MyController : MonoBehaviour
         bool turnLeft = Input.GetKey(KeyCode.A);
         bool turnRight = Input.GetKey(KeyCode.D);
         bool drawPistol = Input.GetKeyDown(KeyCode.R);
+        bool attack = Input.GetKeyDown(KeyCode.Mouse0);
 
         if (forwardPress && velocity < 1)
         {
@@ -71,24 +72,27 @@ public class MyController : MonoBehaviour
             velocity = 0.2f;
         }
 
-        if (drawPistol)
+        if (drawPistol && newAnimation.GetBool("Pistol_Drawn") == false)
         {
             newAnimation.SetBool("Pistol_Drawn", true);
 
             GameObject gun = Instantiate(Resources.Load("Pistol")) as GameObject;
 
             gun.transform.localScale = new Vector3(10,10,10);
+            
+            gun.transform.Rotate(360,-300,0,Space.Self);
 
-            //GameObject hand = GameObject.Find("Base HumanRArmPalm");
+            GameObject hand = GameObject.Find("Base HumanLArmPalm");
 
             //Instantiate(gun,hand.transform.position,hand.transform.rotation);
 
             gun.transform.SetParent(hand.transform, false);
+            gun.transform.position += new Vector3(0,-0.1f,-0.04f);
+        }
 
-            //if(drawPistol && newAnimation.GetBool("Pistol_Drawn") == true)
-            //{
-            //    newAnimation.SetBool("Pistol_Drawn", false);
-            //}
+        if (attack)
+        {
+            newAnimation.SetBool("Attacking", true);
         }
 
         newAnimation.SetFloat("Turn", turn);
