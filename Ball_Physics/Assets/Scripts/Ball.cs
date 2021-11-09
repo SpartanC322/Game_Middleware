@@ -31,6 +31,16 @@ public class Ball : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
     }
 
+    public void setMass(float mas)
+    {
+        mass = mas;
+    }
+
+    public void setRadius(float rad)
+    {
+        radius = rad;
+    }
+
     public void setAcceleration(Vector3 accelerate)
     {
         acceleration += accelerate;
