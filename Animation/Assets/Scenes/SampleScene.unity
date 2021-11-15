@@ -128,6 +128,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4803014352389650695, guid: 06cb2b131fe009c47a523671a8fa9ed8, type: 3}
   m_PrefabInstance: {fileID: 1437343499}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &296944291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8429865231615740692, guid: 06cb2b131fe009c47a523671a8fa9ed8, type: 3}
+  m_PrefabInstance: {fileID: 1437343499}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &296944292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +148,8 @@ MonoBehaviour:
   acceleration: 0.1
   deceleration: 0.1
   turn: 0
+  lookAtThis: {fileID: 1902925528}
+  ikActive: 0
 --- !u!1001 &456299155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,11 +171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6151f4609458ba42b7f1c34b14c5e89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1594934
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6151f4609458ba42b7f1c34b14c5e89, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.8990073
+      value: -10.06
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6151f4609458ba42b7f1c34b14c5e89, type: 3}
       propertyPath: m_LocalRotation.w
@@ -591,6 +598,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49f2055d53eeb4e5a92af590a44bddee, type: 3}
+--- !u!4 &1902925528 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: d6151f4609458ba42b7f1c34b14c5e89, type: 3}
+  m_PrefabInstance: {fileID: 456299155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1933288257 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100338, guid: 49f2055d53eeb4e5a92af590a44bddee, type: 3}
@@ -616,6 +628,8 @@ MonoBehaviour:
   acceleration: 0.1
   deceleration: 0.1
   turn: 0
+  lookAtThis: {fileID: 296944291}
+  ikActive: 0
 --- !u!1 &2122678186 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 3f27a5aa7f5b86b41870fa4d6228e254, type: 3}
@@ -636,3 +650,5 @@ MonoBehaviour:
   acceleration: 0.1
   deceleration: 0.1
   turn: 0
+  lookAtThis: {fileID: 0}
+  ikActive: 0
