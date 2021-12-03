@@ -29,9 +29,8 @@ public class MyController : MonoBehaviour
         bool turnLeft = Input.GetKey(KeyCode.A);
         bool turnRight = Input.GetKey(KeyCode.D);
         bool drawPistol = Input.GetKeyDown(KeyCode.R);
-        bool attack = Input.GetKeyDown(KeyCode.Mouse0);
-        bool stopAttack = Input.GetKeyDown(KeyCode.Mouse1);
-        bool handshake = Input.GetKeyDown(KeyCode.Space);
+        bool attack = Input.GetKeyDown(KeyCode.P);
+        bool stopAttack = Input.GetKeyDown(KeyCode.O);
 
         if (forwardPress && velocity < 1)
         {
@@ -109,11 +108,6 @@ public class MyController : MonoBehaviour
         if (stopAttack)
         {
             newAnimation.SetBool("Attacking", false);
-        }
-
-        if (handshake)
-        {
-            newAnimation.SetBool("Handshake", true);
         }
 
         newAnimation.SetFloat("Turn", turn);
