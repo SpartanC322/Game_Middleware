@@ -99,7 +99,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         // 3
         isConnecting = false;
-        controlPanel.SetActive(true);
+        //controlPanel.SetActive(true);
         Debug.LogError("Disconnected. Please check your Internet connection.");
     }
 
@@ -108,8 +108,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         // 4
         if (PhotonNetwork.IsMasterClient)
         {
-            buttonLoadArena.SetActive(true);
-            buttonJoinRoom.SetActive(false);
+            //buttonLoadArena.SetActive(true);
+            //buttonJoinRoom.SetActive(false);
             playerStatus.text = "You are Lobby Leader";
         }
         else
