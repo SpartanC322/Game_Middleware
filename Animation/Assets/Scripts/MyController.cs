@@ -11,8 +11,6 @@ public class MyController : MonoBehaviour
 
     public bool ikActive = false;
 
-    GameObject hand;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -117,13 +115,23 @@ public class MyController : MonoBehaviour
 
     private void OnAnimatorIK()
     {
-        if (ikActive == true)
+        if(newAnimation)
         {
-            if (lookAtThis != null)
+            if (ikActive == true)
             {
-                newAnimation.SetLookAtWeight(1);
-                newAnimation.SetLookAtPosition(lookAtThis.position);
+                if (lookAtThis != null)
+                {
+                    newAnimation.SetLookAtWeight(1);
+                    newAnimation.SetLookAtPosition(lookAtThis.position);
+                }
+            }
+            else
+            {
+                newAnimation.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
+                newAnimation.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
+                newAnimation.SetLookAtWeight(0);
             }
         }
+        
     }
 }
