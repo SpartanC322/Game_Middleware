@@ -10,19 +10,34 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public InputField createInput;
     public InputField joinInput;
+    public InputField playerName;
 
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(createInput.text);
+        if (PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.CreateRoom(createInput.text);
+            Debug.Log("Creating Room " + createInput.text);
+        }
     }
 
     public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom(joinInput.text);
+        if (PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.JoinRoom(joinInput.text);
+            Debug.Log("Joining Room " + joinInput.text);
+        }
     }
 
     public override void OnJoinedRoom()
     {
+        PhotonNetwork.LocalPlayer.NickName = playerName.text;
         PhotonNetwork.LoadLevel("Room for 1");
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LoadLevel("MySceneAnimation");
     }
 }

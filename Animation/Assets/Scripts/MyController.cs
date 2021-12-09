@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Windows.Speech;
 
 public class MyController : MonoBehaviour
 {
@@ -131,7 +133,6 @@ public class MyController : MonoBehaviour
                 newAnimation.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
                 newAnimation.SetLookAtWeight(0);
             }
-        }
-        
+        } 
     }
 }

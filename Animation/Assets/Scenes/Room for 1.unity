@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createInput: {fileID: 0}
   joinInput: {fileID: 0}
+  playerName: {fileID: 0}
 --- !u!4 &11985835
 Transform:
   m_ObjectHideFlags: 0
@@ -1213,6 +1214,34 @@ PrefabInstance:
     - target: {fileID: 6268191386560839305, guid: 2bf3f217ba3ee5c41a253dc15aeca955, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888660593556002016, guid: 2bf3f217ba3ee5c41a253dc15aeca955, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888660593556002016, guid: 2bf3f217ba3ee5c41a253dc15aeca955, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888660593556002016, guid: 2bf3f217ba3ee5c41a253dc15aeca955, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11985834}
+    - target: {fileID: 8888660593556002016, guid: 2bf3f217ba3ee5c41a253dc15aeca955, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888660593556002016, guid: 2bf3f217ba3ee5c41a253dc15aeca955, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeaveRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888660593556002016, guid: 2bf3f217ba3ee5c41a253dc15aeca955, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888660593556002016, guid: 2bf3f217ba3ee5c41a253dc15aeca955, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bf3f217ba3ee5c41a253dc15aeca955, type: 3}
