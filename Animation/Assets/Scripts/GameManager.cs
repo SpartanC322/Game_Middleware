@@ -3,8 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine.UI;
+using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.CreateRoom(createInput.text);
+            PhotonNetwork.CreateRoom(createInput.text, new RoomOptions());
             Debug.Log("Creating Room " + createInput.text);
         }
     }
@@ -38,6 +38,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void LeaveRoom()
     {
-        PhotonNetwork.LoadLevel("MySceneAnimation");
+        SceneManager.LoadScene("MySceneAnimation");
     }
 }
