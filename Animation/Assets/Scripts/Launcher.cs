@@ -10,8 +10,6 @@ public class Launcher : MonoBehaviourPunCallbacks
 {
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
-
         Debug.Log("Connecting to Photon Network");
 
         PhotonNetwork.ConnectUsingSettings();
